@@ -1,0 +1,35 @@
+ch = [0...n]
+freq = [0....n] //arranged in ascending order
+sum = 0
+node* s, tptr, pptr  //pointer pointing to nodes
+
+create node  //creating node for sum
+pptr = s = node   //pointer pptr and s pointing to node
+s.data = sum
+for i = 0 to n
+  create new_node
+  tptr = new_node
+  new_node.data = ch[i]
+  new_node.freq = freq[i]
+  sum = sum + freq[i]
+  if(s.left = NULL or s.right = NULL)
+     if(tptr.freq > s.freq and s.right = NULL)
+        s.freq = sum
+        s.right = tptr
+     
+     else if (s.left = NULL)
+         s.freq = sum
+        s.left = tptr
+  
+ 
+  else
+    create new_node_2
+    new_node_2.data = sum
+    s = new_node_2
+    if (tptr.freq < s.freq)
+      s.left = tptr
+      s.right = pptr
+      pptr = s
+    
+    else
+      s.right = tptr
