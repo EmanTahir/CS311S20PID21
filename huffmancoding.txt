@@ -1,0 +1,24 @@
+Create a tree
+
+  char data;
+  unsigned freq;
+   parent node,left tree,right node;
+
+  // we have two nodes if node1 is gretaer or equal to node2
+ 
+   if(node1.freq>=node2.freq)
+ 
+  right tree=node1
+  left tree=node2
+  //to create new node,use this
+  
+   right tree.parent node=left tree.parent node=this
+   freq=node1.freq+node2.freq
+else
+
+  if(node1.freq<=node2.freq)   //if node1 is less or equal to node2
+ 
+		  right tree=node2
+		  left tree=node1
+  		  left tree.parent node=right tree.parent node=this
+ 		  freq=node2.freq+node1.freq
