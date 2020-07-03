@@ -1,0 +1,42 @@
+ 
+    from head to left node
+   	i=0 
+  	a=array[i]
+	tptr=headnode
+       tptr=tptr->left
+
+   while(tptr->left!=NULL && tptr->right!=NULL)
+  	array[i]=0
+		if(tptr->left!=NULL)
+		tptr=tptr->left
+		array[i]=0
+   
+  	else if(tptr->right!=NULL)
+ 	tptr=tptr->right
+        array[i]-1
+ 
+//write frequency,char and array code in file//
+  
+	 from head to right node
+	  i=1
+   	 tptr=tptr->right
+	 array[0]=1
+
+     while(tptr->left!=NULL && tptr->right!=NULL) 
+   if(tptr->left->left == NULL && tptr->left->right==NULL)
+        array[i]=0
+ 		
+	else if(tptr->right->left && tptr->right->right==NULL)
+	array[i]=1
+
+    //copy details in file//
+ 	else if(tptr->left==NULL)
+ 	    	tptr=tptr->right
+ 		 array[i]=1
+	   	i++
+	else 
+		tptr=tptr->left
+ 		 array[i]=0
+	   	i++
+		
+        	
