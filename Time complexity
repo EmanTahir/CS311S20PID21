@@ -1,0 +1,167 @@
+Roll no. 1: 2018-CS-123
+Roll no. 2: 2018-CS-121
+
+Analysis Of Algorithm
+Project: File Compression
+Time Complexity of File Compression
+
+Below is the pseudocode for building Huffman tree for file compression
+Huffman Tree(ch, freq)
+ch = [0...n]    
+freq = [0....n] //arranged in ascending order
+sum = 0 ------------------------------------------------- (1)
+node* s, tpt r, pptr  //pointer pointing to node
+------------------------------------------------- (1)
+pptr = s = node   //pointer pptr and s pointing to node-------------------------------------------------------------------  (1)
+s.data = sum ------------------------------------------------- (1)
+if freq[] = NULL 
+    return ------------------------------------------------- (1)
+for i = 0 to n ----------------------------------------------- (n+1)
+  create new_node
+  tptr = new_node   -------------------------------------------------   (n)
+  tptr.data = ch[i] --------------------------------------------   (n)
+tptr.freq = freq[i] ---------------------------------------------  (n)
+
+  sum = sum + freq[i] 
+  if s.left = NULL or s.right = NULL 
+     if tptr.freq > s.freq and s.right = NULL
+        s.freq = sum
+        s.right = tptr
+
+     else if  s.left = NULL
+        	 s.freq = sum
+        	  s.left = tptr
+  else
+    create new_node_2 ------------------------------------------------- 
+------------------------------------------------------------------------- (n)
+    new_node_2.data = sum -------------------------------------(n)
+
+    s = new_node_2 ------------------------------------------------- (n)
+    if tptr.freq < s.freq   -------------------------------------------------  (n)
+      s.left = tptr  -------------------------------------------------  (n)
+      s.right = pptr  -------------------------------------------------  (n)
+      pptr = s   ------------------------------------------------- (n)
+
+
+    else
+      s.right = tptr
+    return tree
+Time Complexity for building Huffman tree:
+=5*1+n+1+n+n+n+n+n+n+n+n+n+n+n+n+6
+= 5 +8+ 13n
+= 13 +13n
+=O(n)
+
+2)	 Below is the psuedocode that generates code from Huffman tree. Tree will be passed as the parameter to the function.
+
+Huffman Code(Tree)
+ i = 0, array[], node* tptr, head ---------------------------------------(1)
+head = root node ------------------------------------------------ (1)
+tptr = head=headnode ------------------------------------------------   (1)
+if tptr.left!=Null -------------------------------------------------    (1)
+   tptr = tptr.left -------------------------------------------------    (1)
+   array[i] = 0 ----------------------------------------------------        (1)
+   while tptr.left!=NULL and tptr.right!=NULL ------------------(n+1)
+      if(tptr.left != NULL)  ------------------------------------(n)
+         i++  -------------------------------------------------------- (n)
+         tptr= tptr.left ---------------------------------------- (n)
+         array[i] = 0 ------------------------------------------ (n)
+      else
+         i++  ------------------------------------------------- (n)
+         tptr = tptr.right  ------------------------------------------------- (n)
+         array[i] = 1 ------------------------------------------------- (n)
+
+**write character freq and  code to a file** ----------------------(n)
+i = 0, tptr = head   ------------------------------------------------- (1)
+if tptr.right !=NULL   ------------------------------------------------- (1)
+    tptr= tptr.right  ------------------------------------------------- (1)
+    array[i] = 1 ------------------------------------------------- (1)
+    while tptr.left != NULL and tptr.right != NUL----------------(n+1) 
+       if tptr.left.left == NULL and tptr.left.right == NULL 
+         i++  
+
+         array[i] = 0  
+
+        ** copy character, freq and array[] code in file**
+         tptr = tptr.right
+
+      else if tptr.right.left == NULL and tptr.right.right == NULL 
+         i++ 
+         array[i] = 0 
+         **copy character, freq and array[] code in file**
+         tptr = tptr.left  
+      if tptr.left != NULL  
+
+          tptr=tptr.right 
+          i++  
+          array[i] = 1  
+      
+else
+           tptr=tptr.left 
+
+           i++ 
+           array[i] = 0 
+
+Time Taken to generate code from Huffman tree :
+The while loop will execute till the length of the tree, hence, time complexity will be O (log n)
+
+
+3)	Below is the pseudocode for decoding compressed text into original file. 
+
+Decoder(tree, code_char)
+   char = ''  ------------------------------------------------- (1)
+   tptr = root_node ------------------------------------------------- (1)
+      	if tree=NULL
+Return
+   while(!eof()) 		//for file1    -------------------------------  (n+1)
+   if code_char = '0'  ------------------------------------------------- (n)
+  tptr= tptr.left  ------------------------------------------------- (n)
+   else if code_char = '1'  -------------------------------------------------           --------------------------------------------------------------(n)
+    	   tptr = tptr.right  ------------------------------------------------- (n)
+
+
+   if tptr.left = NULL and tptr.right = NULL --------------------
+------------------------------------------------- (n)
+     write to new file 	  //file2  ------------------------------------------------- (n)
+   else if tptr.left != NULL and tptr.right != NULL -------------------------------------------------------------------------------- (n)
+     read new char from file    	//file 1  ------------------------------------------------- (n)
+Time taken for decoding compressed text:
+=1+1+n+1+n+n+n+n+n+n+n+n
+=2n+3
+=O(n)
+
+
+**BONUS TASK:**
+ Merge Files (string) 
+count1 = 0, count0=0 ----------------------------------        (1)                                                            
+if string = “”
+	return --------------------------------------------         (1)                                                                    
+n = string.length   --------------------------------------      (1)                                                                    
+ for i = 0 to n    ------------------------------------------- (n+1)                                                                       
+if string[i] = “1” and string[i+1] != “0”
+	increment count1----------------------------------------------
+--------------------------------------------------------------------- (n)                                                                                                     
+if string[i+1] = “0”    ---------------------------------------------- (n)                                                                
+	increment count1   --------------------------------------(n)                                                           
+	if count1=>1   --------------------------------------------- (n)                                                             
+		write to file count1 and “1” ----------------------                                        ----------------------------------------------------------------(n)
+		count1 = 0    ------------------------------------   (n)                                                    
+else if string[i] = 0 and string[i+1] != “1”------------------------------
+------------------------------------------------------------------      (n)
+increment count0	------------------------------------------   (n)
+if string[i+1] = “1” 	----------------------------------------      (n)
+	increment count0 ------------------------------------     (n)
+	if(count0>1) -------------------------------------------      (n)
+              write to file count0 and “0”
+	count0 = 0 ------------------------------------------------	(n)
+write to file string[i]
+*also copy coded scheme file data to this file after above code completion**------------------  (n)
+
+Total time taken to merging files : 1+n+1+n+n+n+n+n+n+n+n+n+n+n+n+n_
+=3n+2= O(N)
+To copy the coded scheme file, while loop is used. n times statements are executed so complexity of loop will also be n
+
+Total time complexity is calculated
+O(n)+O(log n)+O(n)
+=O(N)
+
