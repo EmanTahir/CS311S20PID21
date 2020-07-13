@@ -1,0 +1,22 @@
+ Merge Files (string)
+count1 = 0, count0 = 0
+if string = “”
+	return 
+n = string.length
+ for i = 0 to n
+if string[i] = “1” and string[i+1] != “0”
+	increment count1
+if string[i+1] = “0” 
+	increment count1
+	if count1>1
+		write to file count1 and “1”
+		count1 = 0
+else if string[i] = 0 and string[i+1] != “1”
+	increment count0
+if string[i+1] = “1”
+	increment count0
+	if(count0>1)
+              write to file count0 and “0”
+	count0 = 0
+write to file string[i]
+**also copy coded scheme file data to this file after above code completion**

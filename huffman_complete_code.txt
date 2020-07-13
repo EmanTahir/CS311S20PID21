@@ -1,0 +1,131 @@
+Roll no. 1: 2018-CS-123
+Roll no. 2: 2018-CS-121
+Analysis Of Algorithm
+Project: File Compression
+
+1)	Below is the pseudocode for building Huffman tree for file compression
+Huffman Tree(ch, freq)
+ch = [0...n]    
+freq = [0....n] //arranged in ascending order
+sum = 0
+node* s, tpt r, pptr  //pointer pointing to node
+pptr = s = node   //pointer pptr and s pointing to node
+s.data = sum
+if head = NULL 
+    return
+for i = 0 to n
+  create new_node
+  tptr = new_node
+  new_node.data = ch[i]
+  new_node.freq = freq[i]
+  sum = sum + freq[i]
+  if s.left = NULL or s.right = NULL 
+     if tptr.freq > s.freq and s.right = NULL
+        s.freq = sum
+        s.right = tptr
+     
+     else if  s.left = NULL
+        	 s.freq = sum
+        	  s.left = tptr
+  else
+    create new_node_2
+    new_node_2.data = sum
+    s = new_node_2
+    if tptr.freq < s.freq
+      s.left = tptr
+      s.right = pptr
+      pptr = s
+    
+    else
+      s.right = tptr
+    return tree
+
+2)	 Below is the psuedocode that generates code from Huffman tree. Tree will be passed as the parameter to the function.
+Huffman Code(Tree)
+ i = 0, array[], node* tptr, head
+head = root node
+tptr = head node
+if tptr.left!=Null
+   tptr = tptr.left
+   array[i] = 0
+   while tptr.left!=NULL and tptr.right!=NULL 
+      if(tptr.left != NULL)
+         i++
+         tptr= tptr.left
+         array[i] = 0
+      else
+         i++
+         tptr = tptr.right
+         array[i] = 1
+**write character freq and  code to a file**
+   
+i = 0, tptr = head
+if tptr.right !=NULL
+    tptr= tptr.right
+    array[i] = 1
+    while tptr.left != NULL and tptr.right != NULL
+       if tptr.left.left == NULL and tptr.left.right == NULL
+         i++
+         array[i] = 0
+        ** copy character, freq and array[] code in file**
+         tptr = tptr.right
+
+      else if tptr.right.left == NULL and tptr.right.right == NULL
+         i++
+         array[i] = 0
+         **copy character, freq and array[] code in file**
+         tptr = tptr.left
+      
+      else if tptr.left != NULL
+          tptr=tptr.right
+          i++
+          array[i] = 1
+
+      else
+           tptr=tptr.left
+           i++
+           array[i] = 0
+
+
+3)	Below is the pseudocode for decoding compressed text into original file. 
+Decoder(tree, code_char)
+   char = ''
+   tptr = root_node
+   while(!eof()) 		//for file1
+   if code_char = '0'
+  tptr= tptr.left
+   else if code_char = '1'
+    	   tptr = tptr.right
+ 
+   if tptr.left = NULL and tptr.right = NULL
+     write to new file 	  //file2
+   else if tptr.left != NULL and tptr.right != NULL
+     read new char from file    	//file 1
+
+
+
+
+
+**BONUS TASK:**
+ Merge Files (string)
+count1 = 0, count0 = 0
+if string = “”
+	return 
+n = string.length
+ for i = 0 to n
+if string[i] = “1” and string[i+1] != “0”
+	increment count1
+if string[i+1] = “0” 
+	increment count1
+	if count1>1
+		write to file count1 and “1”
+		count1 = 0
+else if string[i] = 0 and string[i+1] != “1”
+	increment count0
+if string[i+1] = “1”
+	increment count0
+	if(count0>1)
+              write to file count0 and “0”
+	count0 = 0
+write to file string[i]
+**also copy coded scheme file data to this file after above code completion**
