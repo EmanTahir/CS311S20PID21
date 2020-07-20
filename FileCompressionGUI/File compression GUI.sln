@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29728.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "File compression GUI", "File compression GUI\File compression GUI.csproj", "{A9565186-77A9-44D0-AB10-C01167FEFC32}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A9565186-77A9-44D0-AB10-C01167FEFC32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9565186-77A9-44D0-AB10-C01167FEFC32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9565186-77A9-44D0-AB10-C01167FEFC32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9565186-77A9-44D0-AB10-C01167FEFC32}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {68AEA6EF-3E90-4D89-9B03-4399472F3D9E}
+	EndGlobalSection
+EndGlobal
