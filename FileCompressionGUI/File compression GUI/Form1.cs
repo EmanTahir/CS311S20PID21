@@ -20,13 +20,20 @@ namespace File_compression_GUI
         private void Compress_Click(object sender, EventArgs ea)
         {
             var Form1 = new form2();
+            this.Hide();
             new form2().Show();
         }
 
         private void DeCompress_Click(object sender, EventArgs e)
         {
             var Form1 = new DeCompress();
+            this.Hide();
             new DeCompress().Show();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

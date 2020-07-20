@@ -9,3 +9,15 @@ C:\Users\Zainab Tahir\source\repos\File compression GUI\File compression GUI\bin
 C:\Users\Zainab Tahir\source\repos\File compression GUI\File compression GUI\obj\Debug\File compression GUI.exe
 C:\Users\Zainab Tahir\source\repos\File compression GUI\File compression GUI\obj\Debug\File compression GUI.pdb
 C:\Users\Zainab Tahir\source\repos\File compression GUI\File compression GUI\obj\Debug\File_compression_GUI.form2.resources
+C:\Users\rayan\Desktop\FileCompressionGUI\File compression GUI\bin\Debug\File compression GUI.exe.config
+C:\Users\rayan\Desktop\FileCompressionGUI\File compression GUI\bin\Debug\File compression GUI.exe
+C:\Users\rayan\Desktop\FileCompressionGUI\File compression GUI\bin\Debug\File compression GUI.pdb
+C:\Users\rayan\Desktop\FileCompressionGUI\File compression GUI\obj\Debug\File compression GUI.csprojAssemblyReference.cache
+C:\Users\rayan\Desktop\FileCompressionGUI\File compression GUI\obj\Debug\File_compression_GUI.form2.resources
+C:\Users\rayan\Desktop\FileCompressionGUI\File compression GUI\obj\Debug\File_compression_GUI.DeCompress.resources
+C:\Users\rayan\Desktop\FileCompressionGUI\File compression GUI\obj\Debug\File_compression_GUI.Form1.resources
+C:\Users\rayan\Desktop\FileCompressionGUI\File compression GUI\obj\Debug\File_compression_GUI.Properties.Resources.resources
+C:\Users\rayan\Desktop\FileCompressionGUI\File compression GUI\obj\Debug\File compression GUI.csproj.GenerateResource.cache
+C:\Users\rayan\Desktop\FileCompressionGUI\File compression GUI\obj\Debug\File compression GUI.csproj.CoreCompileInputs.cache
+C:\Users\rayan\Desktop\FileCompressionGUI\File compression GUI\obj\Debug\File compression GUI.exe
+C:\Users\rayan\Desktop\FileCompressionGUI\File compression GUI\obj\Debug\File compression GUI.pdb
