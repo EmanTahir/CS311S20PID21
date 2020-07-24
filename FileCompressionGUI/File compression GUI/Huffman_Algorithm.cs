@@ -52,39 +52,52 @@ namespace File_compression_GUI
                 tptr.frequency = freq[j];
                 tptr.character = ch[j];
                 sum = sum + freq[j];
-                if (s.left == null || s.right == null)
+                if (length == 1)             /* Added condition */
                 {
-                    if (tptr.frequency > s.frequency && s.right == null)
-                    {
-                        s.frequency = sum;
-                        s.right = tptr;
-                        head = s;
-                    }
-                    else if (s.left == null)
-                    {
-                        s.frequency = sum;
-                        s.left = tptr;
-                        head = s;
-                    }
-
+                    Node new2 = new Node();
+                    new2.frequency = sum;
+                    new2.character = '\0';
+                    new2.right = tptr;
+                    new2.left = null;
+                    s = new2;
+                    head = s;
                 }
                 else
                 {
-                    Node new_node_2 = new Node();
-                    new_node_2.right = null; new_node_2.left = null;
-                    new_node_2.frequency = sum; new_node_2.character = '\0';
-                    s = new_node_2;
-                    if (pptr.frequency < s.frequency)
+                    if (s.left == null || s.right == null)
                     {
-                        s.left = tptr;
-                        s.right = pptr;
-                        pptr = s;
-                        head = s;
+                        if (tptr.frequency > s.frequency && s.right == null)
+                        {
+                            s.frequency = sum;
+                            s.right = tptr;
+                            head = s;
+                        }
+                        else if (s.left == null)
+                        {
+                            s.frequency = sum;
+                            s.left = tptr;
+                            head = s;
+                        }
+
                     }
                     else
                     {
-                        s.right = tptr;
-                        // head = s;
+                        Node new_node_2 = new Node();
+                        new_node_2.right = null; new_node_2.left = null;
+                        new_node_2.frequency = sum; new_node_2.character = '\0';
+                        s = new_node_2;
+                        if (pptr.frequency < s.frequency)
+                        {
+                            s.left = tptr;
+                            s.right = pptr;
+                            pptr = s;
+                            head = s;
+                        }
+                        else
+                        {
+                            s.right = tptr;
+                            // head = s;
+                        }
                     }
                 }
             }
@@ -94,6 +107,7 @@ namespace File_compression_GUI
         public static void Code_generator(int length, char[] ch, string path, Node head)
         {
             //this part of code is to traverse left side of tree from head
+            File.WriteAllText("coded_scheme_file.txt", "");
             int i = 0;
             string[] temp = new string[length];
             int[] array = new int[length * 5];
@@ -101,6 +115,7 @@ namespace File_compression_GUI
             {
                 array[m] = -1;
             }
+            File.WriteAllText("coded_scheme_file.txt", ""); 
             Node t, p;
             if (head == null || (head.left == null && head.right == null))
             {
@@ -147,7 +162,18 @@ namespace File_compression_GUI
                     {
                         t = t.right;
                         array[i] = 1;
-
+                        if (t.right == null && t.left == null)
+                        {
+                            k = 0;
+                            while (array[k] != -1)
+                            {
+                                a += Convert.ToString(array[k]);
+                                k++;
+                            }
+                            a += "`" + Convert.ToString(t.frequency) + t.character + "\n";
+                            File.AppendAllText("coded_scheme_file.txt", a);
+                            a = "";
+                        }
                         while (t.left != null && t.right != null)
                         {
                             if (t.left.left == null && t.left.right == null)
@@ -156,7 +182,6 @@ namespace File_compression_GUI
                                 p = p.left;
                                 i++;
                                 array[i] = 0;
-
                                 //copy character, freq, array to file
                                 k = 0;
                                 while (array[k] != -1)
@@ -177,14 +202,12 @@ namespace File_compression_GUI
                                 array[i] = 1;
                                 //copy code character and frequency to file
                                 k = 0;
-
                                 while (array[k] != -1)
                                 {
                                     a += Convert.ToString(array[k]);
                                     k++;
                                 }
                                 a += "`" + Convert.ToString(t.frequency) + t.character + "\n";
-
                                 t = t.left;
                             }
                         }
@@ -197,13 +220,24 @@ namespace File_compression_GUI
                                 k++;
                             }
                             a += "`" + Convert.ToString(t.frequency) + t.character + "\n";
-
                         }
-
-
                         File.AppendAllText("coded_scheme_file.txt", a);
                         Convert_to_compressed(path);
                     }
+                }
+                else if (t.left == null && t.right != null && t.right.right == null && t.right.left == null)
+                {
+                    int k = 0; string a = "";
+                    t = t.right;
+                    array[i] = 1;
+                    while (array[k] != -1)
+                    {
+                        a += Convert.ToString(array[k]);
+                        k++;
+                    }
+                    a += "`" + Convert.ToString(t.frequency) + t.character + "\n";
+                    File.AppendAllText("coded_scheme_file.txt", a);
+                    Convert_to_compressed(path);
                 }
             }
         }
@@ -211,6 +245,7 @@ namespace File_compression_GUI
         public static void Convert_to_compressed(string path)
         {
             string text = "";
+            File.WriteAllText("Compressed_text_file.txt", "");
             string lines1 = File.ReadAllText(path);
             string[] lines = File.ReadAllLines("coded_scheme_file.txt");
             int n = lines.Length;
@@ -228,14 +263,23 @@ namespace File_compression_GUI
                                 text += lines[i][j];
                                 j++;
                             }
-
                         }
-
-
 
                     }
                     else if (lines[i].Length == 0)
-                        continue;
+                    {
+                        if (ch == '\n')
+                        {
+                            int j = 0;
+                            while (lines[i - 1][j] != '`')
+                            {
+                                text += lines[i - 1][j];
+                                j++;
+                            }
+                        }
+                        else
+                            continue;
+                    }
                     else if (Char.Equals(lines[i][lines[i].Length - 1], ch) == true)
                     {
                         int j = 0;
@@ -245,7 +289,6 @@ namespace File_compression_GUI
                             j++;
                         }
                     }
-
                 }
             }
             File.WriteAllText("Compressed_text_file.txt", text);
@@ -273,6 +316,8 @@ namespace File_compression_GUI
                     r = data.Substring(k + 1);
                     arr_f[index] = Convert.ToInt32(r);
                     arr_c[index++] = '\n';
+                    arr_f[index] = Convert.ToInt32(r);
+                    arr_c[index++] = '\r';
                     i += 2;
                 }
 
@@ -375,7 +420,7 @@ namespace File_compression_GUI
                         index = i;
 
                 }
-                if (index > 0)
+                if (index >= 0)
                 {
                     freq[index] = freq[index] + 1;
                     ch[index] = c;

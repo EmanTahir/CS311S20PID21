@@ -43,7 +43,7 @@ namespace File_compression_GUI
         {
             string path = textBox1.Text;
             
-            if (path != null)
+            if (path != "" && path != "Choose File")
             {
                 File_compression_GUI.Huffman.Start(path);
                 MessageBox.Show("Compression successful");

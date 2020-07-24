@@ -64,7 +64,7 @@ namespace File_compression_GUI
             string path1 = textBox1.Text;
             string path2 = textBox3.Text;
             
-            if(path1 != null && path2 !=null)
+            if(path1 != "" && path2 != "" && path1 != "Choose Compressed File" && path2 != "Choose Coded Schemme File")
             {
                 MessageBox.Show("Decompression successful");
                 File_compression_GUI.Huffman.Decoder(path1, path2);
