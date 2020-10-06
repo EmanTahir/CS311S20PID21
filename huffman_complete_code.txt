@@ -3,7 +3,7 @@ Roll no. 2: 2018-CS-121
 Analysis Of Algorithm
 Project: File Compression
 
-1)	Below is the pseudocode for building Huffman tree for file compression
+1)	pseudocode for building Huffman tree for file compression
 Huffman Tree(ch, freq)
 ch = [0...n]    
 freq = [0....n] //arranged in ascending order
@@ -40,7 +40,7 @@ for i = 0 to n
       s.right = tptr
     return tree
 
-2)	 Below is the psuedocode that generates code from Huffman tree. Tree will be passed as the parameter to the function.
+2)	 psuedocode that generates code from Huffman tree. Tree will be passed as the parameter to the function.
 Huffman Code(Tree)
  i = 0, array[], node* tptr, head
 head = root node
@@ -87,7 +87,7 @@ if tptr.right !=NULL
            array[i] = 0
 
 
-3)	Below is the pseudocode for decoding compressed text into original file. 
+3)	the pseudocode for decoding compressed text into original file. 
 Decoder(tree, code_char)
    char = ''
    tptr = root_node
@@ -128,4 +128,4 @@ if string[i+1] = “1”
               write to file count0 and “0”
 	count0 = 0
 write to file string[i]
-**also copy coded scheme file data to this file after above code completion**
+/**also copy coded scheme file data to this file after above code completion**/
